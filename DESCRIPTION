@@ -1,0 +1,32 @@
+Package: rhythmCI
+Type: Package
+Title: A streamlined workflow to analyze circadian data using Harmonic Regression
+Version: 1.0.0
+Date: 03-06-2025
+Authors@R:
+    person("Jayanth", "Sreekanth", email="jayanth.sreekanth@charite.de",
+    role = c("aut", "cre"),
+    comment = c(ORCID = "0009-0009-6569-1985"))
+Depends: R (>= 4.4.0), BiocGenerics
+Imports: Biobase, DESeq2, EDASeq, MatrixGenerics,
+    NanoStringNCTools, RUVSeq, S4Vectors, SummarizedExperiment,
+    boot, dplyr, limma, magrittr, rlang, scales, stringr
+Suggests: 
+    ggplot2,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
+Description: A toolkit covering complete circadian data analysis workflow primarily for Nanostring nCounter data,
+    encompassing everything from importing and processing to normalization, analysis and visualization. The regression 
+    based analysis for estimating the confidence interval of amplitude is broadly applicable, not only for 
+    gene-expression data, but also for other biological data. An informative visualization of results accompany 
+    the analysis.
+License: GPL (>= 3) + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.2
+VignetteBuilder: knitr
+URL: https://github.com/Jayanth-Sreekanth/rhythmCI
+BugReports: https://github.com/Jayanth-Sreekanth/rhythmCI/issues
+Config/testthat/edition: 3

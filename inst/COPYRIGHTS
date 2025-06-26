@@ -1,0 +1,14 @@
+This package includes code derived from the 'NanoStringQCPro' R package,
+which is licensed under the Artistic License 2.0.
+
+Function(s) copied or adapted:
+- readRcc and getSpikeInInput from NanoStringQCPro (https://bioconductor.riken.jp/packages/3.10/bioc/html/NanoStringQCPro.html)
+
+The included code is used under the terms of the Artistic License 2.0,
+which is compatible with the GPL-3 license of this package.
+
+Copyright (c) 2016 The authors of the 'NanoStringQCPro' R-package
+
+The full text of the Artistic License 2.0 is available at:
+https://opensource.org/license/artistic-2-0/
+
