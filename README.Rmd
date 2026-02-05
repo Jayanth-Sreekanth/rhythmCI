@@ -29,3 +29,12 @@ You can install the development version of rhythmCI from [GitHub](https://github
 pak::pak("Jayanth-Sreekanth/rhythmCI")
 ```
 
+## Vignettes and Documentation
+
+For detailed examples and workflows, refer to the vignettes:
+
+```r
+# Open the main vignette
+vignette("rhythmCI", package="rhythmCI")
+
+```

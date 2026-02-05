@@ -2,6 +2,7 @@
 
 export(create_RLEplot)
 export(loadnormalizercc)
+export(normalizeruvg)
 export(rhythmicity)
 importFrom(Biobase,"assayData<-")
 importFrom(Biobase,"fData<-")

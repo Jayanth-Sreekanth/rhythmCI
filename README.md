@@ -4,6 +4,7 @@
 # rhythmCI
 
 <!-- badges: start -->
+
 <!-- badges: end -->
 
 A toolkit covering complete circadian data analysis workflow primarily
@@ -22,4 +23,13 @@ You can install the development version of rhythmCI from
 ``` r
 # install.packages("pak")
 pak::pak("Jayanth-Sreekanth/rhythmCI")
+```
+
+## Vignettes and Documentation
+
+For detailed examples and workflows, refer to the vignettes:
+
+``` r
+# Open the main vignette
+vignette("rhythmCI", package="rhythmCI")
 ```

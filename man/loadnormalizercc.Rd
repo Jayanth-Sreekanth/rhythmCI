@@ -47,7 +47,7 @@ loadnormalizercc(
 \value{
 A list of variables containing (not limited to) either a matrix of raw expression values of genes or a matrix
 of log2 transformed normalized genes, phenotype data (pdata), feature data (fdata), expression sets and number of
-endogenous genes in the samples that are below the limit of detection.
+endogenous genes in the samples that are below the Limit Of Detection (LOD).
 }
 \description{
 \code{loadnormalizercc} is used to read the raw nSolver data saved in RCC file and normalize the data using nSolver or RUVg method.
@@ -62,37 +62,53 @@ Any rows with duplicated entries will be dropped and the first one will be retai
 path_to_rcc <- system.file("extdata", "GSE146530", package = "rhythmCI")
 meta <- system.file("extdata", "meta_GSE146530.csv", package = "rhythmCI")
 
-# No normalization -----------------------------------------------------------------
+# Load and No normalization -----------------------------------------------------------------
 
 exp_df1 <- loadnormalizercc(dir = path_to_rcc, meta_dir = meta,
-  hkgenes = c("LOC106606270", "LOC106600007"))
-df1_raw <- exp_df1$rawdata
-df1_pdata <- exp_df1$pdata
-df1_fdata <- exp_df1$fdata
-df1_endblod <- exp_df1$num_endogenous_blod
+  hkgenes = c("LOC106606270", "LOC106600007"), file_number = FALSE)
 
-# nSolver normalization ------------------------------------------------------------
+df1_raw <- exp_df1$rawdata
+df1_pdata <- exp_df1$pData
+df1_fdata <- exp_df1$fData
+df1_endblod <- exp_df1$num_endogenous_blod
+df1_lodmatrix <- exp_df1$lod_matrix
+
+# Genes in the samples that are below the Limit Of Detection (LOD) has TRUE value
+# in the matrix "df1_lodmatrix". They need to be filtered using any of your
+# preferred choice. After which, the data can be RUVg normalized
+# using the function 'normalizeruvg'. nSolver normalization is not available in this case.
+
+# Load and perform nSolver normalization ----------------------------------------------------
+suppressWarnings(
 
 exp_df2 <- loadnormalizercc(dir = path_to_rcc, meta_dir = meta,
   normalization = "nSolver",
-  hkgenes = c("LOC106606270", "LOC106600007"), phenoDataRccColName = 'files.RCC')
+  hkgenes = c("LOC106606270", "LOC106600007"), phenoDataRccColName = 'files.RCC',
+  file_number = FALSE)
+)
+
 df2_nsolverexpset <- exp_df2$nsolverexpset
 df2_nsolvernormlog2 <- exp_df2$nsolvernormlog2
-df2_pdata <- exp_df2$pdata
-df2_fdata <- exp_df2$fdata
+df2_pdata <- exp_df2$pData
+df2_fdata <- exp_df2$fData
 df2_endblod <- exp_df2$num_endogenous_blod
 
-# RUVg normalization ---------------------------------------------------------------
+# Load and perform RUVg normalization -------------------------------------------------------
+suppressMessages(
 
 exp_df3 <- loadnormalizercc(dir = path_to_rcc, meta_dir = meta,
   normalization = "RUVg",
-  hkgenes = c("LOC106606270", "LOC106600007"), k=3)
+  hkgenes = c("LOC106606270", "LOC106600007"), k=3,
+  file_number = FALSE)
+)
+
 df3_set <- exp_df3$set
 df3_vsd <- exp_df3$vsd
 df3_ruvgnormlog2 <- exp_df3$ruvgnormlog2
-df3_pdata <- exp_df3$pdata
-df3_fdata <- exp_df3$fdata
+df3_pdata <- exp_df3$pData
+df3_fdata <- exp_df3$fData
 df3_endblod <- exp_df3$num_endogenous_blod
+
 
 }
 \author{

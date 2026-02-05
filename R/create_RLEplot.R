@@ -4,13 +4,11 @@
 #' `create_RLEplot` generates a RLE plot with samples colored according to subjects.
 #'
 #' @details
-#' Only two variables are needed to create a plot, a raw expression matrix of genes or a log2 transformed
-#' matrix of normalized genes and the number of unique subjects.
+#' Only a raw expression matrix of genes or a log2 transformed matrix of normalized genes
+#' with properly formatted column names is needed to create a plot.
 #'
 #' @param exp_matrix Matrix of the raw expression of genes or log2 transformed normalized genes.
-#' @param num The number of unique subjects (used to generate hue).
 #' @return A RLE plot
-#' @author Jayanth Sreekanth
 #' @importFrom stringr str_split
 #' @importFrom scales hue_pal
 #' @importFrom MatrixGenerics rowMedians
@@ -18,32 +16,62 @@
 #' @export
 #' @examples
 #'
-#' # Create a sample gene expression matrix
-#' genes <- c("GeneA", "GeneB", "GeneC", "GeneD", "GeneE")
-#' samples <- c("Pat1_0", "Pat1_4", "Pat1_8", "Pat2_0", "Pat2_4", "Pat2_8")
+#' # Path of the sample RCC files
+#' path_to_rcc <- system.file("extdata", "GSE146530", package = "rhythmCI")
+#' meta <- system.file("extdata", "meta_GSE146530.csv", package = "rhythmCI")
 #'
-#' df3_ruvgnormlog2 <- matrix(c(6.2, 6.5, 6.0, 7.0, 5.8, 6.1,
-#'                             7.5, 7.8, 7.2, 8.0, 7.0, 7.6,
-#'                             5.9, 6.1, 5.6, 6.3, 5.4, 5.8,
-#'                             8.1, 8.3, 8.0, 8.5, 7.9, 8.2,
-#'                             4.2, 4.5, 4.0, 4.6, 4.1, 5.0),
-#'                             nrow = 5,
-#'                             byrow = TRUE)
+#' # Load and No normalization -----------------------------------------------------------------
+#' suppressWarnings(
 #'
-#' rownames(df3_ruvgnormlog2) <- genes
-#' colnames(df3_ruvgnormlog2) <- samples
+#' exp_df1 <- loadnormalizercc(dir = path_to_rcc, meta_dir = meta,
+#'                             hkgenes = c("LOC106606270", "LOC106600007"),
+#'                             file_number = FALSE
+#'                             )
+#' )
 #'
-#' create_RLEplot(df3_ruvgnormlog2, num=2)
+#' df1_raw <- exp_df1$rawdata
+#' df1_pdata <- exp_df1$pData
+#' df1_fdata <- exp_df1$fData
+#' df1_endblod <- exp_df1$num_endogenous_blod
 #'
-create_RLEplot <- function(exp_matrix, num){
+#' # Perform nSolver normalization ------------------------------------------------------------
+#' suppressMessages(
+#'
+#' exp_df3 <- normalizeruvg(rawdata = df1_raw,
+#'   fData = df1_fdata,
+#'   pData = df1_pdata,
+#'   hkgenes = c("LOC106606270", "LOC106600007"),
+#'   exclude = NULL,
+#'   k=3)
+#' )
+#'
+#' df3_set <- exp_df3$set
+#' df3_vsd <- exp_df3$vsd
+#' df3_ruvgnormlog2 <- exp_df3$ruvgnormlog2
+#'
+#' create_RLEplot(df3_ruvgnormlog2)
+#'
+#'@author Jayanth Sreekanth
+
+create_RLEplot <- function(exp_matrix){
+
   grp <- str_split(colnames(exp_matrix), pattern = '\\_', simplify = TRUE)
 
-  colors <- hue_pal(l=25)(num)
-  boxplot(exp_matrix - rowMedians(exp_matrix), axes = F,
-          lwd=2, ylim = c(-5,5), boxcol = colors[factor(grp)], border = colors[factor(grp)], outline = F,
-          col = 'white')
+  mat_centered <- sweep(exp_matrix,
+                        1,
+                        rowMedians(exp_matrix),
+                        FUN = '-')
+
+  grp_fac <- factor(grp)
+
+  colors <- hue_pal(l=45, c = 100)(nlevels(grp_fac))
+
+  box_cols <- colors[grp_fac]
+
+  boxplot(mat_centered, axes = F,
+          lwd=2, ylim = c(-5,5), col = "white", border = box_cols, outline = F)
   title('Relative Log Expression plot', ylab = substitute(paste(bold('Median deviation of log expression'))),
-        line=2.5)
+        line=2.5, cex.main = 2, cex.lab = 1.3)
   axis(2, mgp = c(1, 1, 0), lwd.ticks=2, las=2)
   abline(h = 0, col = 'black', lwd = 2, lty=2)
   box(lwd = 2, bty = 'l')
@@ -54,4 +82,5 @@ create_RLEplot <- function(exp_matrix, num){
        labels = colnames(exp_matrix),
        srt = 90,
        adj = 1)
+
 }

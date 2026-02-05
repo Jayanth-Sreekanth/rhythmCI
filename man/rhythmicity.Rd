@@ -43,8 +43,8 @@ using bootstrapping. The intervals are corrected using bonferroni method in the 
 A matrix with samples across time in rows and with columns of variables are to be provided to perform harmonic regression.
 After regressing the data with cosine functions, the best fit and the residuals are obtained. The residuals
 are then sampled with replacement using bootstrapping. In each instance of bootstrapping, the sampled residuals
-are summed to the best fit yielding a bootstrap estimate of amplitude. The CI for amplitude estimates will be
-computed using the provided alpha value (also includes Bonferroni correction). Using the CI and fc_cutoff
+are summed to the best fit yielding a bootstrap estimate of amplitude. The Confidence Interval (CI) for amplitude
+estimates will be computed using the provided alpha value (also includes Bonferroni correction). Using the CI and fc_cutoff
 the rhythmic status of each variables are defined as follows: rhythmic (if the lower and upper CI lies above the cutoff),
 arrhythmic (if the lower and upper CI lies below or is equal to the cutoff) and inconclusive (if the lower and upper CI straddles
 the cutoff). The obtained mesor (the average value), amplitude, and phase is estimated before bootstrapping.
@@ -59,6 +59,8 @@ The column-wise operation will need more time than matrix-wise operation.
 
 data(simdf)
 
+suppressWarnings(
+
 output_hr <- rhythmicity(input = simdf,
                          operation = "matrix",
                          seed = 7,
@@ -66,6 +68,8 @@ output_hr <- rhythmicity(input = simdf,
                          num_boot = 999,
                          alpha = 0.05,
                          fc_cutoff = 0.5)
+
+)
 }
 \author{
 Jayanth Sreekanth
