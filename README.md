@@ -22,7 +22,14 @@ You can install the development version of rhythmCI from
 
 ``` r
 # install.packages("pak")
-pak::pak("Jayanth-Sreekanth/rhythmCI")
+pak::pak("Jayanth-Sreekanth/rhythmCI", build = TRUE)
+```
+
+Alternatively, installation can be done with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("Jayanth-Sreekanth/rhythmCI", build_vignettes = TRUE)
 ```
 
 ## Vignettes and Documentation
