@@ -2,23 +2,76 @@
 library(simphony)
 library(data.table)
 
-set.seed(7)
+set.seed(42)
 
-# create a synthetic data using varying amplitude
-featureGroups <- list(data.table::data.table(amp = c(0,0.05,0.1,0.2,0.4,0.5,0.9,1.2,1.6,2)),
-                      data.table::data.table(amp = c(0,0.05,0.1,0.2,0.4,0.5,0.9,1.2,1.6,1.8)))
-simData <- simphony::simphony(featureGroups, nFeatures = 20, interval = 4, nReps = 1, family = 'negbinom')
+# defining the characteristics
+num_patients <- 5
+num_genes <- 10
+num_samples <- 7
+window_hours <- 24
 
-# assigning data to variables
-simdf <- as.data.frame(simData$abundData)
-simdf_sam_meta <- as.data.frame(simData$sampleMetadata)
-simdf_fea_meta <- as.data.frame(simData$featureMetadata[,c(1:3,5:7)])
-simdf <- log2(simdf)
+# create 7 timepoints evenly distributed across a 24-hour window (0, 4, 8, 12, 16, 20, 24)
+t_points <- seq(0, window_hours, length.out = num_samples)
 
-colnames(simdf) <- c('P1_0','P1_4','P1_8','P1_12','P1_16','P1_20','P1_24','P1_28','P1_32','P1_36','P1_40','P1_44',
-                     'P2_0','P2_4','P2_8','P2_12','P2_16','P2_20','P2_24','P2_28','P2_32','P2_36','P2_40','P2_44')
+# define patients as independent conditions
+patient_list <- list()
 
-simdf_img <- simdf #creating a df for image
+# expression base range
+main_baselines <- runif(num_genes, min = 3, max = 11)
+
+# feature df for patients
+for (i in 1:num_patients) {
+
+  # first 5 genes: log2 amplitude between 0.1 and 0.49
+  amp_low <- sample(seq(0.1, 0.49, length.out = 5))
+
+  # next 5 genes: log2 amplitude between 0.5 and 2.0
+  amp_high <- sample(seq(0.5, 2.0, length.out = 5))
+
+  # combine them to make the full 10-gene amplitude vector
+  amplitudes <- c(amp_low, amp_high)
+
+  # build the feature matrix for this patient
+  patient_list[[paste0("Patient_", i)]] <- data.table(
+    fracFeatures = rep(1 / num_genes, num_genes),
+    base = main_baselines,
+    amp = amplitudes,
+    period = window_hours
+  )
+}
+
+# regulating count noise
+low_noise_disp <- function(x) {0.05 * defaultDispFunc(x)}
+
+# simulate the dataset
+sim_data <- simphony(
+  featureGroupsList = patient_list,
+  nFeatures = num_genes,
+  timepointsType = "specified",
+  timepoints = t_points,
+  nReps = 1,
+  family = "negbinom",
+  dispFunc = low_noise_disp
+)
+
+# the generated read counts
+expr_matrix <- sim_data$abundData
+# log2 transform the counts
+simdf <- log2(expr_matrix)
+
+# sample mapping
+sample_meta <- sim_data$sampleMetadata
+
+# gene properties
+feature_meta <- sim_data$featureMetadata
+
+# defining the column names according to what rhythmCI expects
+colnames(simdf) <- c('P1_0','P1_4','P1_8','P1_12','P1_16','P1_20','P1_24',
+                     'P2_0','P2_4','P2_8','P2_12','P2_16','P2_20','P2_24',
+                     'P3_0','P3_4','P3_8','P3_12','P3_16','P3_20','P3_24',
+                     'P4_0','P4_4','P4_8','P4_12','P4_16','P4_20','P4_24',
+                     'P5_0','P5_4','P5_8','P5_12','P5_16','P5_20','P5_24')
+
 simdf <- t(simdf)
 
 usethis::use_data(simdf, overwrite = TRUE)

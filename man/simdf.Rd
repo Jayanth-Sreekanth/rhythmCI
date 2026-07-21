@@ -7,15 +7,15 @@
 \format{
 Time-series gene expression data frame:
 \describe{
-\item{rows}{12 measurements sampled at 4-hour intervals for two Subjects (P1, P2)}
-\item{columns}{20 genes}
+\item{rows}{35 measurements sampled at 4-hour intervals for five Subjects (P1, P2, P3, P4, P5)}
+\item{columns}{10 genes}
 }
 }
 \usage{
 data(simdf)
 }
 \description{
-A sample data frame with 20 genes (column) and 12 samples from two subjects (rows)
+A sample data frame with 10 genes (columns) and 35 samples from five subjects (rows)
 }
 \examples{
 data(simdf)

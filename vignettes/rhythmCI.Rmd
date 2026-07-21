@@ -1,7 +1,7 @@
 ---
 title: "Using rhythmCI: A Quick Guide"
 author: Jayanth Sreekanth
-date: 05 February 2026
+date: 21 July 2026
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using rhythmCI: A Quick Guide}
@@ -15,7 +15,8 @@ csl: biomed-central.csl
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
-  warning = FALSE
+  warning = FALSE,
+  cache = FALSE
 )
 ```
 
@@ -46,7 +47,7 @@ While designed for gene expression data, the functions for rhythm analysis, conf
 NanoString nCounter system produces RCC files (nCounter data files) containing counts for each gene measured in the gene expression assays. To ensure reliability and preciseness in the downstream statistical analysis, proper normalization of nCounter data against reference controls is of utmost importance. The fact that one normalization method is not always suitable for all datasets, the flexibility to choose ‘*none*’ or ‘*nSolver*’ [@aboyoun2022nanostringnctools] or ‘*RUVg*’ [@bhattacharya2021approach] normalization is available in this package. Specific steps are described in the form of a flow diagram below:
 \
 
-<img src="images/overview_of_normalization_steps_1.png" style="max-width:100%; height:auto; display:block; margin:auto">
+<img src="images/overview_of_normalization_steps_1.png" alt="Overview of the normalization workflow" style="max-width:100%; height:auto; display:block; margin:auto">
 
 For more detailed information concerning NanoString nCounter experiment, please refer to <https://university.nanostring.com/gene-expression-data-analysis-guidelines>
 
@@ -142,8 +143,14 @@ df3_ruvgnormlog2 <- exp_df3$ruvgnormlog2
 ### RLE plots
 The Relative Log Expression (RLE) plot [@gandolfo2018rle] can be created for a raw expression gene matrix or a log2 transformed matrix of normalized genes.
 
-```{r rle_plot, fig.width=8, fig.height=5, out.width="80%", fig.align='center'}
-create_RLEplot(df3_ruvgnormlog2)
+```{r rle_plot, fig.width=8, fig.height=5, out.width="80%", fig.align='center', fig.alt = "Relative Log Expression plots (before normalization, nSolver normalization, RUVg normalization)"}
+# Log2 transformed raw values before normalization
+# Rows 1 to 55 correspond to the genes measured
+create_RLEplot(log2(df1_raw[1:54,]))
+# Log2 transformed values after nsolver normalization
+create_RLEplot(df2_nsolvernormlog2[1:54,])
+# Log2 transformed values after RUVg normalization
+create_RLEplot(df3_ruvgnormlog2[1:54,])
 
 ```
 
@@ -155,7 +162,7 @@ create_RLEplot(df3_ruvgnormlog2)
 A well-known parametric method of detecting rhythmicity is by fitting a regression line in terms of cosine functions also termed as harmonic regression method [@cornelissen2014cosinor]. By employing the least squares method, the harmonic regression model uses three parameters to describe rhythms as depicted in the image below: phase (the time of the curve’s peak), amplitude (half-length of the difference between the peak and trough) and magnitude (mean value of the time-series, also called as mesor). Whereas the period (length of time for one cycle) is fixed and chosen based on the organism.
 \
 
-<img src="images/rhythm_characteristics.png" style="max-width:100%; height:auto; display:block; margin:auto">
+<img src="images/rhythm_characteristics.png" alt="Rhythm characteristics" style="max-width:100%; height:auto; display:block; margin:auto">
 
 \
 The model can be expressed as:
@@ -187,7 +194,7 @@ output_hr <- rhythmicity(input = simdf,
                          operation = "matrix",
                          seed = 7,
                          tau = 24, #value in general for humans
-                         num_boot = 999,
+                         num_boot = 3999,
                          alpha = 0.05,
                          fc_cutoff = 0.5)
 
@@ -199,7 +206,7 @@ head(output_hr$P1)
 
 In this example, we use the output of the rhythmicity function and apply additional data transformations so that the results can be visualized.
 
-```{r visual rhythmicity, warning=FALSE, message=FALSE, fig.width=6, fig.height=18, fig.align="center"}
+```{r visual rhythmicity, warning=FALSE, message=FALSE, fig.width=10, fig.height=15, fig.align="center", out.width = "100%", fig.alt = "Simulated gene expression patterns across time"}
 # Loading required packages
 library(dplyr)
 library(tidyverse)
@@ -254,26 +261,36 @@ ggplot(simdf_img_1,
   theme_bw(base_size = 12) +
   scale_color_manual(values = c('aquamarine3','grey','brown2'),
                      labels = c('arrhythmic','inconclusive','rhythmic')) +
-  theme(axis.text = element_text(size=10, face = 'bold'), 
-        axis.title = element_text(size=12, face = 'bold'),
-        axis.ticks.length = unit(4, "pt"), 
+  theme(axis.text = element_text(size=12, face = 'bold'), 
+        axis.title = element_text(size=15, face = 'bold'),
+        strip.background = element_rect(fill = 'white'),
+        strip.text = element_text(size = 15, face = 'bold.italic'),
         panel.spacing = unit(8, "pt"), legend.margin = margin(t=-5),
-        strip.text = element_text(size = 10, face = 'bold')) +
+        legend.text = element_text(size=15, face = 'bold'),
+        legend.title = element_text(size=15, face = 'bold')) +
   xlab("Time") + ylab("Log2 expression")
 ```
 
-```{r visual_CI, warning=FALSE, message=FALSE, fig.width=7, fig.height=5, fig.align="center"}
+```{r visual_CI, warning=FALSE, message=FALSE, fig.width=10, fig.height=5, fig.align="center", out.width = "100%", fig.alt = "Bootstrap-derived amplitude CIs for each simulated gene"}
 # Creating a plot to display the Confidence Interval of amplitude estimates
 ggplot(tbl_final, aes(color=rhythmicity)) +
   geom_linerange(aes(ymin = ci.lower, ymax = ci.upper, x=fct_rev(features)),
                  linewidth = 3) +
-  facet_wrap(~patient, ncol = 6) +
+  facet_wrap(~patient, ncol = 5) +
   coord_flip() +
   # make sure to change the value of yintercept based on cutoff defined
   geom_hline(yintercept=0.5,color = "black", linewidth= 0.5) + 
-  scale_color_manual(values = c('aquamarine3','grey','brown2')) + 
+  scale_y_continuous(breaks = c(0,1,2,3), limits = c(0,3)) +
+  scale_color_manual(values = c('aquamarine4','grey','brown2')) + 
   xlab('Features') + ylab (expression(log[2]-fold~CIs~of~Amplitudes)) +
-  theme_bw(base_size = 16)
+  theme_bw() +
+  theme(axis.text = element_text(size=12, face = 'bold'), 
+        axis.title = element_text(size=15, face = 'bold'),
+        strip.background = element_rect(fill = 'white'),
+        strip.text = element_text(size = 15, face = 'bold.italic'),
+        panel.spacing = unit(8, "pt"), legend.margin = margin(t=-5),
+        legend.text = element_text(size=15, face = 'bold'),
+        legend.title = element_text(size=15, face = 'bold'))
 
 ```
 
