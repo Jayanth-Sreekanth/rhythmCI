@@ -8,6 +8,7 @@
 #' with properly formatted column names is needed to create a plot.
 #'
 #' @param exp_matrix Matrix of the raw expression of genes or log2 transformed normalized genes.
+#' @param ylim Numeric vector of length 2 for the y-coordinate range.
 #' @return A RLE plot
 #' @importFrom stringr str_split
 #' @importFrom scales hue_pal
@@ -49,11 +50,11 @@
 #' df3_vsd <- exp_df3$vsd
 #' df3_ruvgnormlog2 <- exp_df3$ruvgnormlog2
 #'
-#' create_RLEplot(df3_ruvgnormlog2)
+#' create_RLEplot(df3_ruvgnormlog2, ylim = c(-2,2))
 #'
 #'@author Jayanth Sreekanth
 
-create_RLEplot <- function(exp_matrix){
+create_RLEplot <- function(exp_matrix, ylim){
 
   grp <- str_split(colnames(exp_matrix), pattern = '\\_', simplify = TRUE)
 
@@ -69,7 +70,7 @@ create_RLEplot <- function(exp_matrix){
   box_cols <- colors[grp_fac]
 
   boxplot(mat_centered, axes = F,
-          lwd=2, ylim = c(-5,5), col = "white", border = box_cols, outline = F)
+          lwd=2, ylim = ylim, col = "white", border = box_cols, outline = F)
   title('Relative Log Expression plot', ylab = substitute(paste(bold('Median deviation of log expression'))),
         line=2.5, cex.main = 2, cex.lab = 1.3)
   axis(2, mgp = c(1, 1, 0), lwd.ticks=2, las=2)
@@ -77,7 +78,10 @@ create_RLEplot <- function(exp_matrix){
   box(lwd = 2, bty = 'l')
   par(lwd = 2)
 
-  text(x = seq_along(colnames(exp_matrix)), y = -5.5,
+  # Dynamically position labels slightly below the lower y-axis limit
+  y_pos <- ylim[1] - (diff(ylim) * 0.05)
+
+  text(x = seq_along(colnames(exp_matrix)), y = y_pos,
        xpd = TRUE,
        labels = colnames(exp_matrix),
        srt = 90,

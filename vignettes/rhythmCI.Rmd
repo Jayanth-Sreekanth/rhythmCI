@@ -44,7 +44,7 @@ While designed for gene expression data, the functions for rhythm analysis, conf
 ## Normalization and RLE plot
 
 ### Introduction
-NanoString nCounter system produces RCC files (nCounter data files) containing counts for each gene measured in the gene expression assays. To ensure reliability and preciseness in the downstream statistical analysis, proper normalization of nCounter data against reference controls is of utmost importance. The fact that one normalization method is not always suitable for all datasets, the flexibility to choose ‘*none*’ or ‘*nSolver*’ [@aboyoun2022nanostringnctools] or ‘*RUVg*’ [@bhattacharya2021approach] normalization is available in this package. Specific steps are described in the form of a flow diagram below:
+NanoString nCounter system produces RCC files (nCounter data files) containing counts for each gene measured in the gene expression assays. To ensure reliability and preciseness in the downstream statistical analysis, proper normalization of nCounter data against reference controls is of utmost importance. The fact that one normalization method is not always suitable for all datasets, the flexibility to choose ‘*none*’ or ‘*nSolver*’ [@aboyoun2023nanostringnctools] or ‘*RUVg*’ [@risso2014normalization] [@bhattacharya2021approach] normalization is available in this package. Specific steps are described in the form of a flow diagram below:
 \
 
 <img src="images/overview_of_normalization_steps_1.png" alt="Overview of the normalization workflow" style="max-width:100%; height:auto; display:block; margin:auto">
@@ -146,11 +146,11 @@ The Relative Log Expression (RLE) plot [@gandolfo2018rle] can be created for a r
 ```{r rle_plot, fig.width=8, fig.height=5, out.width="80%", fig.align='center', fig.alt = "Relative Log Expression plots (before normalization, nSolver normalization, RUVg normalization)"}
 # Log2 transformed raw values before normalization
 # Rows 1 to 55 correspond to the genes measured
-create_RLEplot(log2(df1_raw[1:54,]))
+create_RLEplot(log2(df1_raw[1:54,]), ylim = c(-2,2))
 # Log2 transformed values after nsolver normalization
-create_RLEplot(df2_nsolvernormlog2[1:54,])
+create_RLEplot(df2_nsolvernormlog2[1:54,], ylim = c(-2,2))
 # Log2 transformed values after RUVg normalization
-create_RLEplot(df3_ruvgnormlog2[1:54,])
+create_RLEplot(df3_ruvgnormlog2[1:54,], ylim = c(-2,2))
 
 ```
 

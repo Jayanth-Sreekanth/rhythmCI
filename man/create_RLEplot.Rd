@@ -4,10 +4,12 @@
 \alias{create_RLEplot}
 \title{Create a RLE plot customized to time-series data}
 \usage{
-create_RLEplot(exp_matrix)
+create_RLEplot(exp_matrix, ylim)
 }
 \arguments{
 \item{exp_matrix}{Matrix of the raw expression of genes or log2 transformed normalized genes.}
+
+\item{ylim}{Numeric vector of length 2 for the y-coordinate range.}
 }
 \value{
 A RLE plot
@@ -54,7 +56,7 @@ df3_set <- exp_df3$set
 df3_vsd <- exp_df3$vsd
 df3_ruvgnormlog2 <- exp_df3$ruvgnormlog2
 
-create_RLEplot(df3_ruvgnormlog2)
+create_RLEplot(df3_ruvgnormlog2, ylim = c(-2,2))
 
 }
 \author{
