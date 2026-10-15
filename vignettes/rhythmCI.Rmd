@@ -1,7 +1,7 @@
 ---
 title: "Using rhythmCI: A Quick Guide"
 author: Jayanth Sreekanth
-date: 21 July 2026
+date: 15 October 2026
 output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using rhythmCI: A Quick Guide}

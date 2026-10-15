@@ -40,3 +40,12 @@ For detailed examples and workflows, refer to the vignettes:
 # Open the main vignette
 vignette("rhythmCI", package="rhythmCI")
 ```
+
+## Citation
+
+If you use this package in your research, please cite:
+
+> Sreekanth, J., Edel, A., Spies, C., Andreotti, S., &
+> Ananthasubramaniam, B. (2026). rhythmCI: an R package for rhythm
+> detection using harmonic regression amplitude confidence intervals.
+> bioRxiv.

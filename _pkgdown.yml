@@ -1,48 +1,48 @@
-url: https://Jayanth-Sreekanth.github.io/rhythmCI/
+url: https://jayanth-sreekanth.github.io/rhythmCI/
 template:
   bootstrap: 5
   bootswatch: flatly
-  light-switch: true
+  light-switch: yes
 navbar:
   structure:
-    left: [intro, reference, articles, news]
-    right: [search, lightswitch, github]
-
+    left:
+    - intro
+    - reference
+    - articles
+    - news
+    right:
+    - search
+    - lightswitch
+    - github
 reference:
-  - title: "Core Calculations"
-    desc: "Main functions for computing rhythm confidence intervals."
-    contents:
-      - rhythmicity
+- title: Core Calculations
+  desc: Main functions for computing rhythm confidence intervals.
+  contents: rhythmicity
+- title: Data Loading and Normalization
+  desc: |
+    Functions for importing raw rhythm data and applying normalization. Use `normalization = "none"` to load raw datasets directly.
+  contents:
+  - loadnormalizercc
+  - normalizeruvg
+  - readRcc
+- title: Visualization
+  desc: Relative Log Expression (RLE) plots.
+  contents: create_RLEplot
+- title: Package Datasets
+  desc: Built-in datasets included with the package.
+  contents: simdf
+- title: Analysis & Support Functions
+  desc: Helper and supplementary functions used during quality control, normalization
+    and rhythm evaluation.
+  contents:
+  - bindingDensityQC
+  - fit_fun
+  - func_boot
+  - func_boot_mat
+  - getSpikeInInput
+  - imagingQC
+  - limitOfDetectionQC
+  - positiveLinQC
+  - rhy_func
+  - rhy_func_mat
 
-  - title: "Data Loading and Normalization"
-    desc: >
-      Functions for importing raw rhythm data and applying normalization. Use `normalization = "none"`
-      to load raw datasets directly.
-    contents:
-      - loadnormalizercc
-      - normalizeruvg
-      - readRcc
-
-  - title: "Visualization"
-    desc: "Relative Log Expression (RLE) plots."
-    contents:
-      - create_RLEplot
-
-  - title: "Package Datasets"
-    desc: "Built-in datasets included with the package."
-    contents:
-      - simdf
-
-  - title: "Analysis & Support Functions"
-    desc: "Helper and supplementary functions used during quality control, normalization and rhythm evaluation."
-    contents:
-      - bindingDensityQC
-      - fit_fun
-      - func_boot
-      - func_boot_mat
-      - getSpikeInInput
-      - imagingQC
-      - limitOfDetectionQC
-      - positiveLinQC
-      - rhy_func
-      - rhy_func_mat

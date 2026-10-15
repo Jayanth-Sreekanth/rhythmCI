@@ -2,7 +2,7 @@ Package: rhythmCI
 Type: Package
 Title: A streamlined workflow to analyze circadian data using Harmonic Regression
 Version: 1.0.0
-Date: 01-02-2026
+Date: 15-10-2026
 Authors@R:
     person("Jayanth", "Sreekanth", email="jayanth.sreekanth@charite.de",
     role = c("aut", "cre"),
@@ -26,8 +26,8 @@ License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 VignetteBuilder: knitr
-URL:https://Jayanth-Sreekanth.github.io/rhythmCI/, https://github.com/Jayanth-Sreekanth/rhythmCI
+URL: https://Jayanth-Sreekanth.github.io/rhythmCI/, https://github.com/Jayanth-Sreekanth/rhythmCI, https://jayanth-sreekanth.github.io/rhythmCI/
 BugReports: https://github.com/Jayanth-Sreekanth/rhythmCI/issues
 Config/testthat/edition: 3
+Config/roxygen2/version: 8.1.1

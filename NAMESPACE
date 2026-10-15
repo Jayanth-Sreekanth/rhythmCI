@@ -4,59 +4,83 @@ export(create_RLEplot)
 export(loadnormalizercc)
 export(normalizeruvg)
 export(rhythmicity)
-importFrom(Biobase,"assayData<-")
-importFrom(Biobase,"fData<-")
-importFrom(Biobase,"pData<-")
-importFrom(Biobase,"phenoData<-")
-importFrom(Biobase,assayData)
-importFrom(Biobase,fData)
-importFrom(Biobase,pData)
-importFrom(Biobase,phenoData)
-importFrom(BiocGenerics,"counts<-")
-importFrom(BiocGenerics,counts)
-importFrom(DESeq2,DESeqDataSetFromMatrix)
-importFrom(DESeq2,estimateDispersionsFit)
-importFrom(DESeq2,estimateDispersionsGeneEst)
-importFrom(DESeq2,estimateSizeFactors)
-importFrom(DESeq2,varianceStabilizingTransformation)
-importFrom(EDASeq,betweenLaneNormalization)
-importFrom(EDASeq,newSeqExpressionSet)
-importFrom(MatrixGenerics,rowMeans)
-importFrom(MatrixGenerics,rowMedians)
-importFrom(MatrixGenerics,rowVars)
-importFrom(NanoStringNCTools,normalize)
-importFrom(NanoStringNCTools,readNanoStringRccSet)
-importFrom(NanoStringNCTools,setQCFlags)
+importFrom(Biobase,
+  "assayData<-",
+  "fData<-",
+  "pData<-",
+  "phenoData<-",
+  assayData,
+  fData,
+  pData,
+  phenoData
+)
+importFrom(BiocGenerics,
+  "counts<-",
+  counts
+)
+importFrom(DESeq2,
+  DESeqDataSetFromMatrix,
+  estimateDispersionsFit,
+  estimateDispersionsGeneEst,
+  estimateSizeFactors,
+  varianceStabilizingTransformation
+)
+importFrom(EDASeq,
+  betweenLaneNormalization,
+  newSeqExpressionSet
+)
+importFrom(MatrixGenerics,
+  rowMeans,
+  rowMedians,
+  rowVars
+)
+importFrom(NanoStringNCTools,
+  normalize,
+  readNanoStringRccSet,
+  setQCFlags
+)
 importFrom(RUVSeq,RUVg)
-importFrom(S4Vectors,"mcols<-")
-importFrom(S4Vectors,mcols)
-importFrom(SummarizedExperiment,"assay<-")
-importFrom(SummarizedExperiment,"rowData<-")
-importFrom(SummarizedExperiment,assay)
-importFrom(SummarizedExperiment,colData)
-importFrom(SummarizedExperiment,rowData)
-importFrom(boot,boot)
-importFrom(boot,boot.ci)
+importFrom(S4Vectors,
+  "mcols<-",
+  mcols
+)
+importFrom(SummarizedExperiment,
+  "assay<-",
+  "rowData<-",
+  assay,
+  colData,
+  rowData
+)
+importFrom(boot,
+  boot,
+  boot.ci
+)
 importFrom(dplyr,arrange)
-importFrom(graphics,abline)
-importFrom(graphics,axis)
-importFrom(graphics,box)
-importFrom(graphics,boxplot)
-importFrom(graphics,par)
-importFrom(graphics,text)
-importFrom(graphics,title)
+importFrom(graphics,
+  abline,
+  axis,
+  box,
+  boxplot,
+  par,
+  text,
+  title
+)
 importFrom(limma,removeBatchEffect)
 importFrom(magrittr,"%>%")
 importFrom(rlang,.data)
 importFrom(scales,hue_pal)
-importFrom(stats,coef)
-importFrom(stats,fitted)
-importFrom(stats,lm)
-importFrom(stats,na.omit)
-importFrom(stats,residuals)
-importFrom(stats,sd)
-importFrom(stringr,str_sort)
-importFrom(stringr,str_split)
+importFrom(stats,
+  coef,
+  fitted,
+  lm,
+  na.omit,
+  residuals,
+  sd
+)
+importFrom(stringr,
+  str_sort,
+  str_split
+)
 importFrom(utils,read.csv)
 importMethodsFrom(DESeq2,counts)
 importMethodsFrom(EDASeq,counts)
