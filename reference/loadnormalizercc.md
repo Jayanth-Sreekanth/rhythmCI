@@ -1,0 +1,158 @@
+# Load and Normalize Nanostring gene expression data
+
+`loadnormalizercc` is used to read the raw nSolver data saved in RCC
+file and normalize the data using nSolver or RUVg method.
+
+## Usage
+
+``` r
+loadnormalizercc(
+  dir,
+  meta_dir,
+  file_number = TRUE,
+  normalization = "none",
+  bd_low = 0.05,
+  bd_high = 2.25,
+  numSD = 0,
+  hkgenes = "",
+  exclude = NULL,
+  k,
+  rlf = NULL,
+  phenoDataRccColName = ""
+)
+```
+
+## Arguments
+
+- dir:
+
+  Path to the NanoString files (make sure the folder contains only the
+  files with .RCC extension).
+
+- meta_dir:
+
+  Path to the meta data file (Consider meta_GSE146530.csv as a
+  template).
+
+- file_number:
+
+  TRUE or FALSE. When TRUE, numbers will be printed when the RCC files
+  are accessed.
+
+- normalization:
+
+  Anyone of the following should be provided: "none" or "nSolver" or
+  "RUVg". Default is "none".
+
+- bd_low:
+
+  The lower limit for binding density (QC Flag). Default is 0.05.
+
+- bd_high:
+
+  The upper limit for binding density (QC Flag). Default is 2.25.
+
+- numSD:
+
+  The number of standard deviations to calibrate the LOD (QC Flag).
+  Default is 0.
+
+- hkgenes:
+
+  A vector of HouseKeeping gene names.
+
+- exclude:
+
+  A vector of HouseKeeping gene to exclude (applicable only to RUVg
+  normalization).
+
+- k:
+
+  The number of dimensions of unwanted variation estimated (applicable
+  only to RUVg normalization).
+
+- rlf:
+
+  Path to the respective RLF file (applicable only to nsolver
+  normalization).
+
+- phenoDataRccColName:
+
+  Column name in meta data that specifies the RCC files (applicable only
+  to nSolver normalization).
+
+## Value
+
+A list of variables containing (not limited to) either a matrix of raw
+expression values of genes or a matrix of log2 transformed normalized
+genes, phenotype data (pdata), feature data (fdata), expression sets and
+number of endogenous genes in the samples that are below the Limit Of
+Detection (LOD).
+
+## Details
+
+This function considers the directory of RCC files and meta data. In the
+meta data file, the first column is assumed to contain the RCC file
+names and the subsequent columns are the sample characteristics. Any
+rows with duplicated entries will be dropped and the first one will be
+retained.
+
+## Author
+
+Jayanth Sreekanth
+
+## Examples
+
+``` r
+
+path_to_rcc <- system.file("extdata", "GSE146530", package = "rhythmCI")
+meta <- system.file("extdata", "meta_GSE146530.csv", package = "rhythmCI")
+
+# Load and No normalization -----------------------------------------------------------------
+
+exp_df1 <- loadnormalizercc(dir = path_to_rcc, meta_dir = meta,
+  hkgenes = c("LOC106606270", "LOC106600007"), file_number = FALSE)
+
+df1_raw <- exp_df1$rawdata
+df1_pdata <- exp_df1$pData
+df1_fdata <- exp_df1$fData
+df1_endblod <- exp_df1$num_endogenous_blod
+df1_lodmatrix <- exp_df1$lod_matrix
+
+# Genes in the samples that are below the Limit Of Detection (LOD) has TRUE value
+# in the matrix "df1_lodmatrix". They need to be filtered using any of your
+# preferred choice. After which, the data can be RUVg normalized
+# using the function 'normalizeruvg'. nSolver normalization is not available in this case.
+
+# Load and perform nSolver normalization ----------------------------------------------------
+suppressWarnings(
+
+exp_df2 <- loadnormalizercc(dir = path_to_rcc, meta_dir = meta,
+  normalization = "nSolver",
+  hkgenes = c("LOC106606270", "LOC106600007"), phenoDataRccColName = 'files.RCC',
+  file_number = FALSE)
+)
+
+df2_nsolverexpset <- exp_df2$nsolverexpset
+df2_nsolvernormlog2 <- exp_df2$nsolvernormlog2
+df2_pdata <- exp_df2$pData
+df2_fdata <- exp_df2$fData
+df2_endblod <- exp_df2$num_endogenous_blod
+
+# Load and perform RUVg normalization -------------------------------------------------------
+suppressMessages(
+
+exp_df3 <- loadnormalizercc(dir = path_to_rcc, meta_dir = meta,
+  normalization = "RUVg",
+  hkgenes = c("LOC106606270", "LOC106600007"), k=3,
+  file_number = FALSE)
+)
+
+df3_set <- exp_df3$set
+df3_vsd <- exp_df3$vsd
+df3_ruvgnormlog2 <- exp_df3$ruvgnormlog2
+df3_pdata <- exp_df3$pData
+df3_fdata <- exp_df3$fData
+df3_endblod <- exp_df3$num_endogenous_blod
+
+```
