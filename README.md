@@ -8,6 +8,7 @@
 [![R-CMD-check](https://github.com/Jayanth-Sreekanth/rhythmCI/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/Jayanth-Sreekanth/rhythmCI/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.23476909.svg)](https://doi.org/10.5281/zenodo.23476909)
 <!-- badges: end -->
 
 A toolkit covering complete circadian data analysis workflow primarily
