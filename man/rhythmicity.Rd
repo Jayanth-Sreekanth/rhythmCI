@@ -72,5 +72,5 @@ output_hr <- rhythmicity(input = simdf,
 )
 }
 \author{
-Jayanth Sreekanth
+Jayanth Sreekanth, Bharath Ananthasubramaniam
 }

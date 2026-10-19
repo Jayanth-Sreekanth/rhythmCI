@@ -325,6 +325,8 @@ loadnormalizercc  <- function(dir, meta_dir,
 ##' (Header, Sample_Attributes, Lane_Attributes, Code_Summary, etc) as a
 ##' vector or data frame.
 ##'
+##' @keywords internal
+##'
 ##' @author NanoStringQCPro
 
 readRcc <- function(rcc, removeSpikeInLabels=TRUE)
@@ -421,6 +423,8 @@ readRcc <- function(rcc, removeSpikeInLabels=TRUE)
 ##' two columns: one showing the GeneName for each probe with spike-in input labels removed
 ##' -- and another with the spike-in input levels.
 ##'
+##' @keywords internal
+##'
 ##' @author NanoStringQCPro
 
 getSpikeInInput <- function(CodeClass, GeneName, nonCtrlProbeVal=NA)
@@ -462,6 +466,8 @@ getSpikeInInput <- function(CodeClass, GeneName, nonCtrlProbeVal=NA)
 ##'
 ##' @param  rcc     loaded and valid rcc file
 ##'
+##' @keywords internal
+##'
 ##' @return
 ##' A character of 'Flag' or 'No flag' for imaging quality
 
@@ -482,6 +488,8 @@ imagingQC <- function(rcc){
 ##' @param  low     the lower limit for binding density
 ##' @param  high    the upper limit for binding density
 ##'
+##' @keywords internal
+##'
 ##' @return
 ##' A character of 'Flag' or 'No flag' for binding density quality
 
@@ -500,6 +508,8 @@ bindingDensityQC <- function(rcc, low, high){
 ##' Citing https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8138885/
 ##'
 ##' @param  rcc     loaded and valid rcc file
+##'
+##' @keywords internal
 ##'
 ##' @return
 ##' A character of 'Flag' or 'No flag' for linearity of positive controls
@@ -522,6 +532,8 @@ positiveLinQC <- function(rcc){
 ##'
 ##' @param  rcc     loaded and valid rcc file
 ##' @param  numSD   number of standard deviations to calibrate the LOD
+##'
+##' @keywords internal
 ##'
 ##' @return
 ##' A character of 'Flag' or 'No flag' for limit of detection

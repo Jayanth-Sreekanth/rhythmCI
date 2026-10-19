@@ -1,12 +1,17 @@
 Package: rhythmCI
 Type: Package
-Title: A streamlined workflow to analyze circadian data using Harmonic Regression
+Title: an R package for rhythm detection using harmonic regression amplitude confidence intervals
 Version: 1.0.0
 Date: 15-10-2026
-Authors@R:
+Authors@R:c(
     person("Jayanth", "Sreekanth", email="jayanth.sreekanth@charite.de",
-    role = c("aut", "cre"),
-    comment = c(ORCID = "0009-0009-6569-1985"))
+    role = c("aut", "cre"), comment = c(ORCID = "0009-0009-6569-1985")),
+    person("Andreas", "Edel", role = c("ctb"), comment = c(ORCID = "0000-0002-9951-7223")),
+    person("Claudia", "Spies", role = c("fnd"), comment = c(ORCID = "0000-0002-1062-0495")),
+    person("Sandro", "Andreotti", role = c("ctb", "ths"), comment = c(ORCID = "0000-0002-1062-0495")),
+    person("Bharath", "Ananthasubramaniam", email="bharath.ananthasubramaniam@hu-berlin.de",
+    role = c("aut", "ths"), comment = c(ORCID = "0000-0003-4467-1546"))
+    )
 Depends: R (>= 4.4.0), BiocGenerics
 Imports: Biobase, DESeq2, EDASeq, MatrixGenerics,
     NanoStringNCTools, RUVSeq, S4Vectors, SummarizedExperiment,
@@ -27,7 +32,7 @@ Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
-URL: https://Jayanth-Sreekanth.github.io/rhythmCI/, https://github.com/Jayanth-Sreekanth/rhythmCI, https://jayanth-sreekanth.github.io/rhythmCI/
+URL: https://github.com/Jayanth-Sreekanth/rhythmCI, https://jayanth-sreekanth.github.io/rhythmCI/
 BugReports: https://github.com/Jayanth-Sreekanth/rhythmCI/issues
 Config/testthat/edition: 3
 Config/roxygen2/version: 8.1.1

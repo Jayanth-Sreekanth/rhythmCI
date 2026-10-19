@@ -25,3 +25,4 @@ Note that this is a helper function for readRlf() and elsewhere and is not inten
 \author{
 NanoStringQCPro
 }
+\keyword{internal}

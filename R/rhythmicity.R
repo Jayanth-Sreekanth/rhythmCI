@@ -32,7 +32,7 @@
 #' @importFrom stats lm na.omit fitted residuals coef
 #' @importFrom boot boot boot.ci
 #' @export
-#' @author Jayanth Sreekanth
+#' @author Jayanth Sreekanth, Bharath Ananthasubramaniam
 #' @examples
 #'
 #' # Load the data that comes along with the package and run rhythmicity.
@@ -114,6 +114,8 @@ rhythmicity <- function(input,
 #' @param num_boot The number of bootstrap samples to be generated
 #' @return A list with the CI of amplitude, rhythmic status and mesor for each variable
 #' separated according to subjects
+#'
+#' @keywords internal
 #'
 #' @author Jayanth Sreekanth
 
@@ -203,6 +205,8 @@ rhy_func_mat <- function(df, ttl_sub, tau, alpha, fc_cutoff, num_boot) {
 #' @param lm_fitted The fitted value of initial harmonic regression
 #' @return An amplitude estimate for the instance
 #'
+#' @keywords internal
+#'
 #' @author Jayanth Sreekanth
 
 func_boot_mat <- function(df_resi, n, lm_fitted, tau){
@@ -257,6 +261,8 @@ func_boot_mat <- function(df_resi, n, lm_fitted, tau){
 #' @return A list with the CI of amplitude, rhythmic status and mesor for each variable
 #' separated according to subjects
 #'
+#' @keywords internal
+#'
 #' @author Jayanth Sreekanth
 
 rhy_func <- function(df, ttl_sub, tau, alpha, fc_cutoff, num_boot) {
@@ -297,6 +303,8 @@ rhy_func <- function(df, ttl_sub, tau, alpha, fc_cutoff, num_boot) {
 #' @param num_boot The number of bootstrap samples to be generated
 #' @return A list with the CI of amplitude, rhythmic status and mesor for each variable separated according
 #' to subjects
+#'
+#' @keywords internal
 #'
 #' @author Jayanth Sreekanth
 
@@ -343,6 +351,8 @@ fit_fun <- function(nm, df_dyn, n_col, ttl_sub, tau, alpha, fc_cutoff, num_boot)
 #' @param tau The period of one oscillation
 #' @param lm_fitted The fitted value of initial harmonic regression
 #' @return An amplitude estimate for the instance
+#'
+#' @keywords internal
 #'
 #' @author Jayanth Sreekanth
 

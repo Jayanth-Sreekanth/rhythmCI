@@ -26,3 +26,4 @@ or data frame.
 \author{
 NanoStringQCPro
 }
+\keyword{internal}

@@ -25,3 +25,4 @@ and returns the amplitude for each bootstrap instance.
 \author{
 Jayanth Sreekanth
 }
+\keyword{internal}

@@ -24,25 +24,10 @@ reference:
   contents:
   - loadnormalizercc
   - normalizeruvg
-  - readRcc
 - title: Visualization
   desc: Relative Log Expression (RLE) plots.
   contents: create_RLEplot
 - title: Package Datasets
   desc: Built-in datasets included with the package.
   contents: simdf
-- title: Analysis & Support Functions
-  desc: Helper and supplementary functions used during quality control, normalization
-    and rhythm evaluation.
-  contents:
-  - bindingDensityQC
-  - fit_fun
-  - func_boot
-  - func_boot_mat
-  - getSpikeInInput
-  - imagingQC
-  - limitOfDetectionQC
-  - positiveLinQC
-  - rhy_func
-  - rhy_func_mat
 
