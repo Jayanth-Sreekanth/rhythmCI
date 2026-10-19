@@ -84,7 +84,7 @@ operation will need more time than matrix-wise operation.
 
 ## Author
 
-Jayanth Sreekanth
+Jayanth Sreekanth, Bharath Ananthasubramaniam
 
 ## Examples
 

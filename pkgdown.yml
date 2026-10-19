@@ -3,7 +3,7 @@ pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   rhythmCI: rhythmCI.html
-last_built: 2026-10-15T16:42Z
+last_built: 2026-10-19T09:08Z
 urls:
   reference: https://jayanth-sreekanth.github.io/rhythmCI/reference
   article: https://jayanth-sreekanth.github.io/rhythmCI/articles

@@ -14,14 +14,8 @@ Functions for importing raw rhythm data and applying normalization. Use
 
 - [`loadnormalizercc()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/loadnormalizercc.md)
   : Load and Normalize Nanostring gene expression data
-
 - [`normalizeruvg()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/normalizeruvg.md)
   : Normalize Nanostring gene expression data
-
-- [`readRcc()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/readRcc.md)
-  :
-
-       Read an .RCC file 
 
 ## Visualization
 
@@ -36,48 +30,3 @@ Built-in datasets included with the package.
 
 - [`simdf`](https://jayanth-sreekanth.github.io/rhythmCI/reference/simdf.md)
   : Simulated Data Frame using simphony
-
-## Analysis & Support Functions
-
-Helper and supplementary functions used during quality control,
-normalization and rhythm evaluation.
-
-- [`bindingDensityQC()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/bindingDensityQC.md)
-  :
-
-       Quality control - Binding density 
-
-- [`fit_fun()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/fit_fun.md)
-  : Column-wise operation - sub function
-
-- [`func_boot()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/func_boot.md)
-  : Column-wise operation to estimate the amplitude during every
-  bootstrap instance
-
-- [`func_boot_mat()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/func_boot_mat.md)
-  : Matrix-wise operation - sub function to estimate the amplitude
-  during every bootstrap instance
-
-- [`getSpikeInInput()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/getSpikeInInput.md)
-  : getSpikeInInput
-
-- [`imagingQC()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/imagingQC.md)
-  :
-
-       Quality control 
-
-- [`limitOfDetectionQC()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/limitOfDetectionQC.md)
-  :
-
-       Quality control - limit of detection 
-
-- [`positiveLinQC()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/positiveLinQC.md)
-  :
-
-       Quality control - Positive line 
-
-- [`rhy_func()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/rhy_func.md)
-  : Column-wise operation - main function
-
-- [`rhy_func_mat()`](https://jayanth-sreekanth.github.io/rhythmCI/reference/rhy_func_mat.md)
-  : Matrix-wise operation - main function
