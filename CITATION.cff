@@ -1,0 +1,59 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: >-
+  rhythmCI: an R package for rhythm detection using harmonic
+  regression amplitude confidence intervals
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Jayanth
+    family-names: Sreekanth
+    email: jayanth.sreekanth@charite.de
+    affiliation: Charité-Universitätsmedizin Berlin
+    orcid: 'https://orcid.org/0009-0009-6569-1985'
+  - given-names: Andreas
+    family-names: Edel
+    affiliation: Charité-Universitätsmedizin Berlin
+    orcid: 'https://orcid.org/0000-0002-9951-7223'
+  - given-names: Claudia
+    family-names: Spies
+    affiliation: Charité-Universitätsmedizin Berlin
+    orcid: 'https://orcid.org/0000-0002-1062-0495'
+  - given-names: Sandro
+    family-names: Andreotti
+    affiliation: Freie Universität Berlin
+    orcid: 'https://orcid.org/0000-0001-7678-9720'
+  - given-names: Bharath
+    family-names: Ananthasubramaniam
+    email: bharath.ananthasubramaniam@hu-berlin.de
+    affiliation: Humboldt-Universität zu Berlin
+    orcid: 'https://orcid.org/0000-0003-4467-1546'
+identifiers:
+  - type: url
+    value: 'https://doi.org/10.64898/2026.10.05.756647'
+    description: bioRxiv
+repository-code: 'https://github.com/Jayanth-Sreekanth/rhythmCI'
+url: 'https://jayanth-sreekanth.github.io/rhythmCI/'
+abstract: >-
+  A toolkit covering complete circadian data analysis
+  workflow primarily for Nanostring nCounter data,
+  encompassing everything from importing and processing to
+  normalization, analysis and visualization. The regression
+  based analysis for estimating the confidence interval of
+  amplitude is broadly applicable, not only for
+  gene-expression data, but also for other biological data.
+  An informative visualization of results accompany the
+  analysis.
+keywords:
+  - Rhythmicity detection
+  - Bootstrapped confidence intervals
+  - Harmonic regression
+  - RUVg normalization
+  - NanoString nCounter
+license: GPL-3.0-or-later
+version: 1.0.0
+date-released: '2026-10-19'

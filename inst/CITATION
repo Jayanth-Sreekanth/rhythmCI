@@ -1,0 +1,8 @@
+bibentry(
+  bibtype = "Article",
+  title = "rhythmCI: an R package for rhythm detection using harmonic regression amplitude confidence intervals",
+  author = "Jayanth Sreekanth, Andreas Edel, Claudia Spies, Sandro Andreotti, Bharath Ananthasubramaniam",
+  journal = "bioRxiv",
+  year = 2026,
+  doi = "https://doi.org/10.64898/2026.10.05.756647"
+)
