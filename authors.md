@@ -11,7 +11,7 @@
 - **Claudia Spies**. Funder. [](https://orcid.org/0000-0002-1062-0495)
 
 - **Sandro Andreotti**. Contributor, thesis advisor.
-  [](https://orcid.org/0000-0002-1062-0495)
+  [](https://orcid.org/0000-0001-7678-9720)
 
 - **Bharath Ananthasubramaniam**. Author, thesis advisor.
   [](https://orcid.org/0000-0003-4467-1546)
@@ -19,17 +19,17 @@
 ## Citation
 
 Source:
-[`DESCRIPTION`](https://github.com/Jayanth-Sreekanth/rhythmCI/blob/main/DESCRIPTION)
+[`inst/CITATION`](https://github.com/Jayanth-Sreekanth/rhythmCI/blob/main/inst/CITATION)
 
-Sreekanth J, Ananthasubramaniam B (2026). *rhythmCI: an R package for
-rhythm detection using harmonic regression amplitude confidence
-intervals*. R package version 1.0.0,
-<https://github.com/Jayanth-Sreekanth/rhythmCI>.
+Sreekanth J, Edel A, Spies C, Andreotti S, Ananthasubramaniam B (2026).
+“rhythmCI: an R package for rhythm detection using harmonic regression
+amplitude confidence intervals.” *bioRxiv*.
+[doi:10.64898/2026.10.05.756647](https://doi.org/10.64898/2026.10.05.756647).
 
-    @Manual{,
+    @Article{,
       title = {rhythmCI: an R package for rhythm detection using harmonic regression amplitude confidence intervals},
-      author = {Jayanth Sreekanth and Bharath Ananthasubramaniam},
+      author = {Jayanth Sreekanth and Andreas Edel and Claudia Spies and Sandro Andreotti and Bharath Ananthasubramaniam},
+      journal = {bioRxiv},
       year = {2026},
-      note = {R package version 1.0.0},
-      url = {https://github.com/Jayanth-Sreekanth/rhythmCI},
+      doi = {https://doi.org/10.64898/2026.10.05.756647},
     }
