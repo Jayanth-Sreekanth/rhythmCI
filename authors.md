@@ -19,7 +19,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/Jayanth-Sreekanth/rhythmCI/blob/v1.0.0/inst/CITATION)
+[`inst/CITATION`](https://github.com/Jayanth-Sreekanth/rhythmCI/blob/main/inst/CITATION)
 
 Sreekanth J, Edel A, Spies C, Andreotti S, Ananthasubramaniam B (2026).
 “rhythmCI: an R package for rhythm detection using harmonic regression
