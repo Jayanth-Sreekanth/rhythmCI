@@ -12,7 +12,7 @@ Authors@R:c(
     person("Bharath", "Ananthasubramaniam", email="bharath.ananthasubramaniam@hu-berlin.de",
     role = c("aut", "ths"), comment = c(ORCID = "0000-0003-4467-1546"))
     )
-Depends: R (>= 4.4.0), BiocGenerics
+Depends: R (>= 4.4), BiocGenerics
 Imports: Biobase, DESeq2, EDASeq, MatrixGenerics,
     NanoStringNCTools, RUVSeq, S4Vectors, SummarizedExperiment,
     boot, dplyr, limma, magrittr, rlang, scales, stringr
